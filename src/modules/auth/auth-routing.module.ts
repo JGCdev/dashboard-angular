@@ -36,11 +36,11 @@ export const ROUTES: Routes = [
         } as SBRouteData,
     },
     {
-        path: 'forgot-password',
+        path: 'recuperar-contrasena',
         canActivate: [],
         component: authContainers.ForgotPasswordComponent,
         data: {
-            title: 'Pages Forgot Password - Step Levels',
+            title: 'Recuperar Contraseña - Step Levels',
         } as SBRouteData,
     },
 ];

@@ -1,9 +1,16 @@
 import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
-export const sideNavSections: SideNavSection[] = [
+export const sideNavSectionsAdmin: SideNavSection[] = [
     {
-        text: 'Menú',
-        items: ['dashboard', 'clientes', 'proyectos', 'ajustes', 'charts'],
+        text: 'Menú Administración',
+        items: ['dashboard', 'clientes', 'proyectos', 'ajustes'],
+    },
+];
+
+export const sideNavSectionsClient: SideNavSection[] = [
+    {
+        text: 'Panel Cliente',
+        items: ['dashboard', 'proyectos', 'ajustes'],
     },
 ];
 
@@ -27,10 +34,5 @@ export const sideNavItems: SideNavItems = {
         icon: 'tachometer-alt',
         text: 'Ajustes',
         link: '/proyectos',
-    },
-    charts: {
-        icon: 'chart-area',
-        text: 'Charts',
-        link: '/charts',
     },
 };

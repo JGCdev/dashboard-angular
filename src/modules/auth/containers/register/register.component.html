@@ -3,31 +3,50 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear Cuenta</h3></div>
                     <div class="card-body">
-                        <form>
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <div class="form-group"><label class="small mb-1" for="inputFirstName">First Name</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" /></div>
+                                    <div class="form-group"><label class="small mb-1" for="inputFirstName">Nombre *</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Introduce tu nombre" formControlName="nombre" required /></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"><label class="small mb-1" for="inputLastName">Last Name</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" /></div>
+                                    <div class="form-group"><label class="small mb-1" for="inputLastName">Apellidos</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Introduce tus apellidos" formControlName="apellidos"/></div>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" /></div>
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <div class="form-group"><label class="small mb-1" for="inputPassword">Password</label><input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" /></div>
+                                    <div class="form-group"><label class="small mb-1" for="inputTelefono">Teléfono *</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Introduce tu teléfono" formControlName="telefono"/></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Confirm Password</label><input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" /></div>
+                                    <div class="form-group"><label class="small mb-1" for="inputDireccion">Dirección</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Introduce tu dirección" formControlName="direccion"/></div>
                                 </div>
                             </div>
-                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" routerLink="/dashboard">Create Account</a></div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputEmpresa">Empresa</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Nombre de empresa" formControlName="empresa" /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email *</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Dirección de email" formControlName="email" required /></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputPassword">Contraseña *</label><input class="form-control py-4" id="inputPassword" type="password" placeholder="Introducir contraseña" formControlName="pass" required /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Confirmar Contraseña *</label><input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirmar contraseña" formControlName="passRepeat" required /></div>
+                                </div>
+                            </div>
+                            <div class="errors" *ngIf="errorMsg">
+                                {{errorMsg}}
+                            </div>
+                            <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" value="Crear"></div>
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <div class="small"><a routerLink="/auth/login">Have an account? Go to login</a></div>
+                        <div class="small"><a routerLink="/auth/login">Ya tienes una cuenta? Accede desde aquí!</a></div>
                     </div>
                 </div>
             </div>

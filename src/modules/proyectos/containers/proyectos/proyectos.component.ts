@@ -68,12 +68,12 @@ const users: User[] = [
 ];
 
 @Component({
-    selector: 'sb-clientes',
+    selector: 'sb-proyectos',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './clientes.component.html',
-    styleUrls: ['clientes.component.scss'],
+    templateUrl: './proyectos.component.html',
+    styleUrls: ['proyectos.component.scss'],
 })
-export class ClientesComponent implements OnInit {
+export class ProyectosComponent implements OnInit {
     displayedColumns: string[] = [
         'nombre',
         'apellidos',

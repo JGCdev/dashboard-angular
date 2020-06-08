@@ -7,8 +7,6 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from '../models';
 
-import { UserService } from './user.service';
-
 @Injectable()
 export class AuthService {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -18,25 +16,14 @@ export class AuthService {
 
     registro(user: User): Observable<any> {
         console.log('User: ', user);
-        const api = `${environment.apiEndPoint}/register-user`;
-        return this.http.post(api, user).pipe(catchError(this.handleError));
+        const api = `${environment.apiEndPoint}/users`;
+        return this.http.post(api, user);
     }
 
     // Sign-in
     login(user: User) {
         console.log('User: ', user);
-        return this.http
-            .post<any>(`${environment.apiEndPoint}/login`, user)
-            .subscribe((res: any) => {
-                localStorage.setItem('access_token', res.token);
-                this.getUserProfile(res._id).subscribe((response: any) => {
-                    this.currentUser = response;
-                    localStorage.setItem('user', JSON.stringify(response));
-                    console.log('Current user: ', this.currentUser);
-                    console.log('navegamos a pagina principal');
-                    this.router.navigate(['dashboard']);
-                });
-            });
+        return this.http.post<any>(`${environment.apiEndPoint}/login`, user);
     }
 
     // User profile

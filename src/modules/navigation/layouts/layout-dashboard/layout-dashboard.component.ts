@@ -7,7 +7,7 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { sideNavItems, sideNavSections } from '@modules/navigation/data';
+import { sideNavItems, sideNavSectionsAdmin } from '@modules/navigation/data';
 import { NavigationService } from '@modules/navigation/services';
 import { Subscription } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class LayoutDashboardComponent implements OnInit, OnDestroy {
     @HostBinding('class.sb-sidenav-toggled') sideNavHidden = false;
     subscription: Subscription = new Subscription();
     sideNavItems = sideNavItems;
-    sideNavSections = sideNavSections;
+    sideNavSections = sideNavSectionsAdmin;
     sidenavStyle = 'sb-sidenav-dark';
 
     constructor(

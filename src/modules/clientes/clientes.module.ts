@@ -17,6 +17,7 @@ import * as clientesGuards from './guards';
 /* Services */
 import * as clientesServices from './services';
 import { AuthGuard } from '@modules/auth/guards';
+import { MaterialModule } from '@app/material/material.module';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { AuthGuard } from '@modules/auth/guards';
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        MaterialModule,
     ],
     providers: [...clientesServices.services, ...clientesGuards.guards, AuthGuard],
     declarations: [...clientesContainers.containers],

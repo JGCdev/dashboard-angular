@@ -4,10 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SBRouteData } from '@modules/navigation/models';
 
 /* Module */
-import { ClientesModule } from './clientes.module';
+import { ProyectosModule } from './proyectoss.module';
 
 /* Containers */
-import * as clientesContainers from './containers';
+import * as proyectosContainers from './containers';
 
 import { AuthGuard } from '@modules/auth/guards';
 
@@ -16,30 +16,30 @@ export const ROUTES: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        component: clientesContainers.ClientesComponent,
+        component: proyectosContainers.ProyectosComponent,
         data: {
-            title: 'Clientes - Step Levels',
+            title: 'Proyectos - Step Levels',
             breadcrumbs: [
                 {
-                    text: 'Clientes',
+                    text: 'Proyectos',
                     active: true,
                 },
             ],
         } as SBRouteData,
     },
     {
-        path: 'add-cliente',
+        path: 'crear-proyecto',
         canActivate: [AuthGuard],
-        component: clientesContainers.AddClientesComponent,
+        component: proyectosContainers.AddProyectoComponent,
         data: {
-            title: 'Añadir Cliente - Step Levels',
+            title: 'Añadir proyecto - Step Levels',
             breadcrumbs: [
                 {
-                    text: 'Clientes',
-                    link: '/clientes',
+                    text: 'Proyectos',
+                    link: '/proyectos',
                 },
                 {
-                    text: 'Añadir Cliente',
+                    text: 'Añadir Proyecto',
                     active: true,
                 },
             ],
@@ -48,7 +48,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-    imports: [ClientesModule, RouterModule.forChild(ROUTES)],
+    imports: [ProyectosModule, RouterModule.forChild(ROUTES)],
     exports: [RouterModule],
 })
-export class ClientesRoutingModule {}
+export class ProyectosRoutingModule {}

@@ -5,5 +5,8 @@ export interface User {
     telefono: string;
     empresa: string;
     email: string;
+    direccion: string;
+    fechaIngreso: string;
+    admin: boolean;
     pass: string;
 }
