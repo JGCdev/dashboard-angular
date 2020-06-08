@@ -8,5 +8,4 @@ export interface User {
     direccion: string;
     fechaIngreso: string;
     admin: boolean;
-    pass: string;
 }

@@ -18,7 +18,7 @@ export const ROUTES: Routes = [
         canActivate: [AuthGuard],
         component: clientesContainers.ClientesComponent,
         data: {
-            title: 'Clientes - Step Levels',
+            title: 'Clientes - Grey Levels',
             breadcrumbs: [
                 {
                     text: 'Clientes',
@@ -28,11 +28,11 @@ export const ROUTES: Routes = [
         } as SBRouteData,
     },
     {
-        path: 'add-cliente',
+        path: 'anadir-cliente',
         canActivate: [AuthGuard],
         component: clientesContainers.AddClientesComponent,
         data: {
-            title: 'Añadir Cliente - Step Levels',
+            title: 'Añadir Cliente - Grey Levels',
             breadcrumbs: [
                 {
                     text: 'Clientes',
@@ -40,6 +40,24 @@ export const ROUTES: Routes = [
                 },
                 {
                     text: 'Añadir Cliente',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+    },
+    {
+        path: 'editar-cliente/:id',
+        canActivate: [AuthGuard],
+        component: clientesContainers.EditClientesComponent,
+        data: {
+            title: 'Editar Cliente - Grey Levels',
+            breadcrumbs: [
+                {
+                    text: 'Clientes',
+                    link: '/clientes',
+                },
+                {
+                    text: 'Editar Cliente',
                     active: true,
                 },
             ],

@@ -18,7 +18,7 @@ export const ROUTES: Routes = [
         canActivate: [AuthGuard],
         component: proyectosContainers.ProyectosComponent,
         data: {
-            title: 'Proyectos - Step Levels',
+            title: 'Proyectos - Grey Levels',
             breadcrumbs: [
                 {
                     text: 'Proyectos',
@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
         canActivate: [AuthGuard],
         component: proyectosContainers.AddProyectoComponent,
         data: {
-            title: 'Añadir proyecto - Step Levels',
+            title: 'Añadir proyecto - Grey Levels',
             breadcrumbs: [
                 {
                     text: 'Proyectos',

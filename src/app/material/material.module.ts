@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 
 @NgModule({
     declarations: [],
@@ -15,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
         MatPaginatorModule,
         MatSortModule,
         MatInputModule,
+        MatSlideToggleModule,
     ],
     exports: [
         MatTableModule,
@@ -22,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
         MatPaginatorModule,
         MatSortModule,
         MatInputModule,
+        MatSlideToggleModule,
     ],
 })
 export class MaterialModule {}

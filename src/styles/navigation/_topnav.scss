@@ -5,7 +5,7 @@
   height: $topnav-base-height;
   z-index: $zindex-topnav;
   .navbar-brand {
-      width: $sidenav-base-width;
+      width: 180px;
       padding-left: $navbar-padding-x;
       padding-right: $navbar-padding-x;
       margin: 0;
@@ -13,6 +13,7 @@
   &.navbar-dark {
       #sidebarToggle {
           color: $topnav-dark-toggler-color;
+          margin-top: 4px;
       }
   }
   &.navbar-light {

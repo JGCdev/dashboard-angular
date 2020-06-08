@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '@modules/auth/models';
 import { AuthService } from '@modules/auth/services';
 
 @Component({
@@ -13,7 +12,12 @@ import { AuthService } from '@modules/auth/services';
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     errorMsg: string | undefined;
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private cdRef: ChangeDetectorRef) {
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private router: Router,
+        private cdRef: ChangeDetectorRef
+    ) {
         this.registerForm = this.fb.group({
             email: ['', Validators.required],
             pass: ['', Validators.required],
@@ -30,7 +34,7 @@ export class RegisterComponent implements OnInit {
             this.registerForm.valid &&
             this.registerForm.value.pass === this.registerForm.value.passRepeat
         ) {
-            const user: User = {
+            const user = {
                 id: '',
                 email: this.registerForm.value.email,
                 pass: this.registerForm.value.pass,

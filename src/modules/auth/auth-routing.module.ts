@@ -24,7 +24,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: authContainers.LoginComponent,
         data: {
-            title: 'Pages Login - Step Levels',
+            title: 'Acceso - Grey Levels',
         } as SBRouteData,
     },
     {
@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: authContainers.RegisterComponent,
         data: {
-            title: 'Pages Register - Step Levels',
+            title: 'Registro - Grey Levels',
         } as SBRouteData,
     },
     {
@@ -40,7 +40,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: authContainers.ForgotPasswordComponent,
         data: {
-            title: 'Recuperar Contraseña - Step Levels',
+            title: 'Recuperar Contraseña - Grey Levels',
         } as SBRouteData,
     },
 ];
