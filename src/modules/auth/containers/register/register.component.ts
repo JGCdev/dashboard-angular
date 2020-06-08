@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@modules/auth/models';
@@ -12,14 +12,15 @@ import { AuthService } from '@modules/auth/services';
 })
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    errorMsg: string | undefined;
+    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private cdRef: ChangeDetectorRef) {
         this.registerForm = this.fb.group({
             email: ['', Validators.required],
             pass: ['', Validators.required],
             passRepeat: ['', Validators.required],
             nombre: ['', Validators.required],
             apellidos: [''],
-            telefono: [''],
+            telefono: ['', Validators.required],
             empresa: [''],
             direccion: [''],
         });
@@ -41,12 +42,25 @@ export class RegisterComponent implements OnInit {
                 fechaIngreso: String(new Date()),
                 admin: false,
             };
-            this.authService.registro(user).subscribe(res => {
-                console.log('Usuario creado: ', res);
-                this.router.navigate(['auth/login']);
-            });
+            this.authService.registro(user).subscribe(
+                res => {
+                    console.log('Usuario creado: ', res);
+                    this.router.navigate(['auth/login']);
+                },
+                err => {
+                    console.log('Error: ', err);
+                    if (err.error.code === 11000) {
+                        console.log('Email duplicado');
+                        this.errorMsg = 'El email seleccionado ya existe en la base de datos';
+                    } else {
+                        this.errorMsg = 'Error al crear el usuario';
+                    }
+                    this.cdRef.detectChanges();
+                }
+            );
         } else {
             console.log('formulario invalido', this.registerForm);
+            this.errorMsg = 'Formulario inválido, rellena los campos obligatorios (*)';
         }
     }
 

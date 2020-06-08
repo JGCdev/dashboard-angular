@@ -8,12 +8,18 @@
                         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                             <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email</label><input class="form-control py-4" id="inputEmailAddress" formControlName="email" type="email"  /></div>
                             <div class="form-group"><label class="small mb-1" for="inputPassword">Contraseña</label><input class="form-control py-4" id="inputPassword" formControlName="pass" type="password"  /></div>
+
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">Recordar</label></div>
                             </div>
-                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" routerLink="/auth/forgot-password">Olvidaste tu contraseña?</a><input type="submit" class="btn btn-primary" value="Acceder"></div>
+                            <div class="errors" *ngIf="errorMsg">
+                                {{errorMsg}}
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" routerLink="/auth/recuperar-contrasena">Olvidaste tu contraseña?</a><input type="submit" class="btn btn-primary" value="Acceder"></div>
                         </form>
+                        
                     </div>
+                   
                     <div class="card-footer text-center">
                         <div class="small"><a routerLink="/auth/register">Necesitas una cuenta? Regístrate!</a></div>
                     </div>
