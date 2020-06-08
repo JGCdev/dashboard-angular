@@ -18,3 +18,17 @@ body {
   color:red;
   font-size: 0.7rem;
 }
+.bg-black{
+  background-color: black;
+}
+.btn-black{
+  color:white;
+  background-color: black;
+}
+.btn-black:hover{
+  color:white;
+  background-color: rgba(0,0,0,0.9);
+}
+a{
+  color:black;
+}

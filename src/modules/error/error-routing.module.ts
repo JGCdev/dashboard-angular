@@ -24,7 +24,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: errorContainers.Error401Component,
         data: {
-            title: 'Error 401 - Step Levels',
+            title: 'Error 401 - Grey Levels',
         } as SBRouteData,
     },
     {
@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: errorContainers.Error404Component,
         data: {
-            title: 'Error 404 - Step Levels',
+            title: 'Error 404 - Grey Levels',
         } as SBRouteData,
     },
     {
@@ -40,7 +40,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: errorContainers.Error500Component,
         data: {
-            title: 'Error 500 - Step Levels',
+            title: 'Error 500 - Grey Levels',
         } as SBRouteData,
     },
     {

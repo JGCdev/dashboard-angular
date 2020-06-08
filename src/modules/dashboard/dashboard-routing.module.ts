@@ -17,7 +17,7 @@ export const ROUTES: Routes = [
     {
         path: '',
         data: {
-            title: 'Dashboard - Step Levels',
+            title: 'Dashboard - Grey Levels',
             breadcrumbs: [
                 {
                     text: 'Dashboard',

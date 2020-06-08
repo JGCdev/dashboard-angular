@@ -15,7 +15,6 @@ const users: User[] = [
         direccion: 'C/ Eduardo Dato',
         admin: false,
         fechaIngreso: '',
-        pass: '',
     },
     {
         id: 'sdsd34',
@@ -27,7 +26,6 @@ const users: User[] = [
         direccion: 'C/ Eduardo Dato',
         admin: false,
         fechaIngreso: '',
-        pass: '',
     },
     {
         id: 'sd345sd',
@@ -39,7 +37,6 @@ const users: User[] = [
         direccion: 'C/ Eduardo Dato número 18, 2º izd',
         admin: false,
         fechaIngreso: '',
-        pass: '',
     },
     {
         id: 'sd5435sd',
@@ -51,7 +48,6 @@ const users: User[] = [
         direccion: 'C/ Eduardo Dato',
         admin: false,
         fechaIngreso: '',
-        pass: '',
     },
     {
         id: 'sds345d',
@@ -63,7 +59,6 @@ const users: User[] = [
         direccion: 'C/ Eduardo Dato',
         admin: false,
         fechaIngreso: '',
-        pass: '',
     },
 ];
 

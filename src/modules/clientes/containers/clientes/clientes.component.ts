@@ -4,68 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '@modules/auth/models';
 
-const users: User[] = [
-    {
-        id: 'sdsd',
-        nombre: 'Jesús',
-        apellidos: 'Giménez',
-        telefono: '666555444',
-        email: 'sdfsd@dsd.com',
-        empresa: 'Hiberus Tecnología',
-        direccion: 'C/ Eduardo Dato',
-        admin: false,
-        fechaIngreso: '',
-        pass: '',
-    },
-    {
-        id: 'sdsd34',
-        nombre: 'Jose',
-        apellidos: 'Giménez',
-        telefono: '666555444',
-        email: 'sdfsd@dsd.com',
-        empresa: 'Hiberus Tecnología',
-        direccion: 'C/ Eduardo Dato',
-        admin: false,
-        fechaIngreso: '',
-        pass: '',
-    },
-    {
-        id: 'sd345sd',
-        nombre: 'Alberto',
-        apellidos: 'Giménez',
-        telefono: '666555444',
-        email: 'sdfsd@dsd.com',
-        empresa: 'Hiberus Tecnología',
-        direccion: 'C/ Eduardo Dato número 18, 2º izd',
-        admin: false,
-        fechaIngreso: '',
-        pass: '',
-    },
-    {
-        id: 'sd5435sd',
-        nombre: 'Marcos',
-        apellidos: 'Giménez',
-        telefono: '666555444',
-        email: 'sdfsd@dsd.com',
-        empresa: 'Hiberus Tecnología',
-        direccion: 'C/ Eduardo Dato',
-        admin: false,
-        fechaIngreso: '',
-        pass: '',
-    },
-    {
-        id: 'sds345d',
-        nombre: 'Pedro',
-        apellidos: 'Giménez',
-        telefono: '666555444',
-        email: 'sdfsd@dsd.com',
-        empresa: 'Hiberus Tecnología',
-        direccion: 'C/ Eduardo Dato',
-        admin: false,
-        fechaIngreso: '',
-        pass: '',
-    },
-];
+import { ClientesService } from '../../services/clientes.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'sb-clientes',
@@ -82,6 +22,7 @@ export class ClientesComponent implements OnInit {
         'empresa',
         'direccion',
         'admin',
+        'actions',
     ];
     dataSource: MatTableDataSource<User>;
 
@@ -90,15 +31,22 @@ export class ClientesComponent implements OnInit {
     @ViewChild(MatSort, { static: true })
     sort!: MatSort;
 
-    constructor() {
-        // Create 100 users
-        // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(users);
+    constructor(private cs: ClientesService, private router: Router) {
+        this.dataSource = new MatTableDataSource();
     }
 
     ngOnInit() {
+        this.getClientes();
+
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+    }
+
+    getClientes() {
+        this.cs.getClientes().subscribe(res => {
+            console.log(res);
+            this.dataSource.data = res;
+        });
     }
 
     applyFilter(event: Event) {
@@ -108,5 +56,27 @@ export class ClientesComponent implements OnInit {
         if (this.dataSource.paginator) {
             this.dataSource.paginator.firstPage();
         }
+    }
+
+    edit(id: string) {
+        this.router.navigate(['clientes/editar-cliente/' + id]);
+    }
+
+    delete(id: string) {
+        this.cs.deleteClient(id).subscribe(
+            res => {
+                // Meter alertas
+                console.log('Usuario eliminado', res);
+                this.getClientes();
+
+            },
+            err => {
+                console.log('Error al eliminar usuario', err);
+            }
+        );
+    }
+
+    view() {
+        console.log('view');
     }
 }
