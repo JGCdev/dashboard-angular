@@ -7,8 +7,6 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from '../models';
 
-import { UserService } from './user.service';
-
 @Injectable()
 export class AuthService {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -18,7 +16,7 @@ export class AuthService {
 
     registro(user: User): Observable<any> {
         console.log('User: ', user);
-        const api = `${environment.apiEndPoint}/register-user`;
+        const api = `${environment.apiEndPoint}/users`;
         return this.http.post(api, user).pipe(catchError(this.handleError));
     }
 

@@ -9,14 +9,10 @@ import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
 
 /* Containers */
-import * as dashboardContainers from './containers';
+import * as proyectosContainers from './containers';
 
-/* Guards */
-import * as dashboardGuards from './guards';
-
-/* Services */
-import * as dashboardServices from './services';
 import { AuthGuard } from '@modules/auth/guards';
+import { MaterialModule } from '@app/material/material.module';
 
 @NgModule({
     imports: [
@@ -26,9 +22,10 @@ import { AuthGuard } from '@modules/auth/guards';
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        MaterialModule,
     ],
-    providers: [...dashboardServices.services, ...dashboardGuards.guards, AuthGuard],
-    declarations: [...dashboardContainers.containers],
-    exports: [...dashboardContainers.containers],
+    providers: [AuthGuard],
+    declarations: [...proyectosContainers.containers],
+    exports: [...proyectosContainers.containers],
 })
-export class DashboardModule {}
+export class ProyectosModule {}

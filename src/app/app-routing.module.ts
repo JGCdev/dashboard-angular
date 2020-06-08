@@ -8,14 +8,16 @@ const routes: Routes = [
         redirectTo: '/auth/login',
     },
     {
-        path: 'charts',
-        loadChildren: () =>
-            import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
-    },
-    {
         path: 'clientes',
         loadChildren: () =>
             import('modules/clientes/clientes-routing.module').then(m => m.ClientesRoutingModule),
+    },
+    {
+        path: 'proyectos',
+        loadChildren: () =>
+            import('modules/proyectos/proyectos-routing.module').then(
+                m => m.ProyectosRoutingModule
+            ),
     },
     {
         path: 'dashboard',
