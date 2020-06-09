@@ -1,0 +1,23 @@
+<sb-layout-dashboard>
+   <sb-dashboard-head title="Archivos proyecto {{id}}" [hideBreadcrumbs]="false"></sb-dashboard-head>
+   <div class="border-0 rounded-lg ">
+      <div class="card">
+         <div class="card-body">
+            <form name="upload-form" action="upload" method="post" enctype="multipart/form-data">
+                  <h5 class="card-title">Subir archivo</h5>
+                  <p>Contacta <a href="#">aquí</a> si tienes cualquier problema en la subida del formulario</p>
+                  <div class="input-file-container">
+                     <input type="file" name="attachment" id="attachment">
+                  </div>
+                  <button class="btn btn-primary send" type="submit">Subir</button>
+            </form>
+         </div>
+      </div>
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Archivos</h5>
+            <p>Listado de archivos</p>
+         </div>
+      </div>
+   </div>
+</sb-layout-dashboard>

@@ -12,8 +12,7 @@ import { ProyectosService } from '@modules/proyectos/services/proyectos.service'
 export class AddProyectoComponent implements OnInit {
     registerProjectForm: FormGroup;
     errorMsg: string | undefined;
-    toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
+    listPackaging: string[] = ['Cartón', 'Caja Cartón Ondulado', 'Estuche carboncillo'];
     constructor(
         private fb: FormBuilder,
         private projectsService: ProyectosService,

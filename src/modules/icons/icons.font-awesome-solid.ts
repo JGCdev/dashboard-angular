@@ -12,13 +12,13 @@ import {
     faChevronDown,
     faChevronUp,
     faColumns,
+    faDownload,
     faPencilAlt,
     faSearch,
     faTable,
     faTachometerAlt,
     faTrashAlt,
     faUser,
-
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -39,4 +39,5 @@ export const fontAwesomeSolidIcons = {
     faUser,
     faTrashAlt,
     faPencilAlt,
+    faDownload,
 };
