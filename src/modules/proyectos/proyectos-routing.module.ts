@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SBRouteData } from '@modules/navigation/models';
 
 /* Module */
-import { ProyectosModule } from './proyectoss.module';
+import { ProyectosModule } from './proyectos.module';
 
 /* Containers */
 import * as proyectosContainers from './containers';

@@ -68,7 +68,6 @@ export class ClientesComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogConfirmationComponent);
         dialogRef.afterClosed().subscribe(result => {
             if (result === true) {
-                console.log('borramos');
                 this.cs.deleteClient(id).subscribe(
                     res => {
                         console.log('Usuario eliminado', res);

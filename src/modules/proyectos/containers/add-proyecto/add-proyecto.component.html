@@ -1,4 +1,57 @@
 <sb-layout-dashboard>
    <sb-dashboard-head title="Crear Proyecto" [hideBreadcrumbs]="false"></sb-dashboard-head>
-   Añadir proyecto
-</sb-layout-dashboard>
+   <div class="border-0 rounded-lg ">
+      <div class="card-body">
+            <form [formGroup]="registerProjectForm" (ngSubmit)="onSubmit()">
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputFirstName">Nombre del proyecto *</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Nombre de proyecto" formControlName="nombre" required /></div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputLastName">Nombre diseño</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Nombre del diseño" formControlName="nombreDis"/></div>
+                  </div>
+               </div>
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputTelefono">Tipo Packaging</label>
+                           <select class="custom-select" formControlName="packaging"  placeholder="seleccionar">
+                              <option disabled value="">Selecciona una opción</option>
+                              <option>Uno</option>
+                              <option>Uno</option>
+                           </select>
+                        </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group"><label class="small mb-1" for="inputMaterial">Tipo Material</label>
+                        <select class="custom-select" formControlName="material">
+                           <option disabled value="">Selecciona una opción</option>
+                           <option>Uno</option>
+                           <option>Uno</option>
+                        </select>
+                     </div>
+                  </div>
+
+               </div>
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputEmpresa">Impresor</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Impresor" formControlName="impresor" /></div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group"><label class="small mb-1" for="inputMaterial">Tipo Archivo</label>
+                        <select class="custom-select" formControlName="archivo">
+                           <option disabled value="">Selecciona una opción</option>
+                           <option>Uno</option>
+                           <option>Uno</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="errors" *ngIf="errorMsg">
+                  {{errorMsg}}
+               </div>
+               <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" value="Crear"></div>
+            </form>
+      </div>
+   </div>
+   </sb-layout-dashboard>
