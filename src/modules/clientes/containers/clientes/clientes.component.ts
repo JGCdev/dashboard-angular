@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { DialogConfirmationComponent } from '@common/components';
 import { User } from '@modules/auth/models';
 
 import { ClientesService } from '../../services/clientes.service';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'sb-clientes',
@@ -31,7 +33,7 @@ export class ClientesComponent implements OnInit {
     @ViewChild(MatSort, { static: true })
     sort!: MatSort;
 
-    constructor(private cs: ClientesService, private router: Router) {
+    constructor(private cs: ClientesService, private router: Router, public dialog: MatDialog) {
         this.dataSource = new MatTableDataSource();
     }
 
@@ -63,17 +65,20 @@ export class ClientesComponent implements OnInit {
     }
 
     delete(id: string) {
-        this.cs.deleteClient(id).subscribe(
-            res => {
-                // Meter alertas
-                console.log('Usuario eliminado', res);
-                this.getClientes();
-
-            },
-            err => {
-                console.log('Error al eliminar usuario', err);
+        const dialogRef = this.dialog.open(DialogConfirmationComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.cs.deleteClient(id).subscribe(
+                    res => {
+                        console.log('Usuario eliminado', res);
+                        this.getClientes();
+                    },
+                    err => {
+                        console.log('Error al eliminar usuario', err);
+                    }
+                );
             }
-        );
+        });
     }
 
     view() {

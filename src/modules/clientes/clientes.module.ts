@@ -18,6 +18,7 @@ import * as clientesGuards from './guards';
 import * as clientesServices from './services';
 import { AuthGuard } from '@modules/auth/guards';
 import { MaterialModule } from '@app/material/material.module';
+import { DialogConfirmationComponent } from '@common/components';
 
 @NgModule({
     imports: [
@@ -32,5 +33,6 @@ import { MaterialModule } from '@app/material/material.module';
     providers: [...clientesServices.services, ...clientesGuards.guards, AuthGuard],
     declarations: [...clientesContainers.containers],
     exports: [...clientesContainers.containers],
+    entryComponents: [DialogConfirmationComponent],
 })
 export class ClientesModule {}

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services';
+import { ClientesService } from '@modules/clientes/services';
 
 @Component({
     selector: 'sb-add-clientes',
@@ -14,7 +15,7 @@ export class AddClientesComponent implements OnInit {
     errorMsg: string | undefined;
     constructor(
         private fb: FormBuilder,
-        private clientesService: AuthService,
+        private clientesService: ClientesService,
         private router: Router,
         private cdRef: ChangeDetectorRef
     ) {

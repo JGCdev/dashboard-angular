@@ -9,6 +9,9 @@ import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
 
 /* Containers */
+import * as proyectosServices from './services';
+
+/* Containers */
 import * as proyectosContainers from './containers';
 
 import { AuthGuard } from '@modules/auth/guards';
@@ -24,7 +27,7 @@ import { MaterialModule } from '@app/material/material.module';
         NavigationModule,
         MaterialModule,
     ],
-    providers: [AuthGuard],
+    providers: [...proyectosServices.services, AuthGuard],
     declarations: [...proyectosContainers.containers],
     exports: [...proyectosContainers.containers],
 })

@@ -1,4 +1,51 @@
 <sb-layout-dashboard>
    <sb-dashboard-head title="Editar Cliente" [hideBreadcrumbs]="false"></sb-dashboard-head>
-   Editar cliente
+   <div class="border-0 rounded-lg ">
+      <div class="card-body">
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputFirstName">Nombre *</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Nombre de cliente" formControlName="nombre" required /></div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputLastName">Apellidos</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Apellidos cliente" formControlName="apellidos"/></div>
+                  </div>
+               </div>
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputTelefono">Teléfono *</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Teléfono cliente" formControlName="telefono"/></div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputDireccion">Dirección</label><input class="form-control py-4" id="inputLastName" type="text" placeholder="Dirección cliente" formControlName="direccion"/></div>
+                  </div>
+               </div>
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputEmpresa">Empresa</label><input class="form-control py-4" id="inputFirstName" type="text" placeholder="Empresa cliente" formControlName="empresa" /></div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email *</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Email cliente" formControlName="email" required /></div>
+                  </div>
+               </div>
+
+               <div class="form-row">
+                  <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="small mb-1" for="inputPassword">Admin</label>
+                           <!-- Default checked -->
+                           <mat-slide-toggle
+                                 class="toggle-chip"
+                                 formControlName="admin">
+                           </mat-slide-toggle>
+                        </div>
+                  </div>
+               </div>
+
+               <div class="errors" *ngIf="errorMsg">
+                  {{errorMsg}}
+               </div>
+               <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" value="Actualizar"></div>
+            </form>
+      </div>
+   </div>
 </sb-layout-dashboard>

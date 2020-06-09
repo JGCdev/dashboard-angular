@@ -6,34 +6,34 @@ import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ClientesService {
+export class ProyectosService {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     constructor(private http: HttpClient, public router: Router) {}
 
-    getClientes(): Observable<any> {
-        const api = `${environment.apiEndPoint}/users`;
+    getProyectos(): Observable<any> {
+        const api = `${environment.apiEndPoint}/projects`;
         return this.http.get(api);
     }
 
-    updateClient(data: any) {
-        const api = `${environment.apiEndPoint}/users`;
+    updateProject(data: any) {
+        const api = `${environment.apiEndPoint}/projects`;
         return this.http.put(api, data);
     }
 
-    deleteClient(id: string) {
-        const api = `${environment.apiEndPoint}/users/${id}`;
+    deleteProject(id: string) {
+        const api = `${environment.apiEndPoint}/projects/${id}`;
         return this.http.delete(api);
     }
 
-    registro(user: User): Observable<any> {
-        console.log('User: ', user);
-        const api = `${environment.apiEndPoint}/users`;
-        return this.http.post(api, user);
+    registro(project: User): Observable<any> {
+        console.log('projects: ', project);
+        const api = `${environment.apiEndPoint}/projects`;
+        return this.http.post(api, project);
     }
 
-    getCliente(id: any): Observable<any> {
-        const api = `${environment.apiEndPoint}/users/${id}`;
+    getProject(id: any): Observable<any> {
+        const api = `${environment.apiEndPoint}/projects/${id}`;
         return this.http.get(api);
     }
 }
