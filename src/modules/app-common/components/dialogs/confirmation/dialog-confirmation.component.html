@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Confirmación</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>¿Estás seguro de querer borrar el usuario?</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-success" [mat-dialog-close]="true" style="margin-right:10px;" mat-dialog-close>Sí</button>
+  <button class="btn btn-danger" [mat-dialog-close]="false" cdkFocusInitial>No</button>
+</mat-dialog-actions>

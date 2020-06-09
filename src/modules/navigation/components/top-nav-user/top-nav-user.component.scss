@@ -3,3 +3,8 @@
 #userDropdown {
     cursor: pointer;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #333;
+    color:white;
+}
