@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '@modules/auth/models';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
+
+import { Proyecto } from '../models';
 
 @Injectable()
 export class ProyectosService {
@@ -26,10 +27,12 @@ export class ProyectosService {
         return this.http.delete(api);
     }
 
-    registro(project: User): Observable<any> {
-        console.log('projects: ', project);
+    registro(project: Proyecto, archivo: any): Observable<any> {
+        const formData = new FormData();
+        formData.append('file', archivo);
+        formData.append('datos', JSON.stringify(project));
         const api = `${environment.apiEndPoint}/projects`;
-        return this.http.post(api, project);
+        return this.http.post(api, formData);
     }
 
     getProject(id: any): Observable<any> {

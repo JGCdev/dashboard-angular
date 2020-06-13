@@ -16,6 +16,12 @@
             <table mat-table [dataSource]="dataSource" matSort>
             
                 <!-- Progress Column -->
+                <ng-container matColumnDef="preview">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Preview </th>
+                    <td mat-cell *matCellDef="let row"> <img class="preview-image" src="{{row.preview}}"> </td>
+                </ng-container>
+
+                <!-- Progress Column -->
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre proyecto </th>
                     <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
@@ -61,7 +67,9 @@
                 <!-- Color Column -->
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-                    <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.estado}} </td>
+                    <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                        <span class="{{fases[row.estado].style}}"> {{fases[row.estado].text}} </span>
+                    </td>
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
