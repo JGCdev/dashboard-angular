@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProyectosService } from '@modules/proyectos/services/proyectos.service';
+import { User } from '@modules/auth/models';
+import { AuthService } from '@modules/auth/services';
+import { ClientesService } from '@modules/clientes/services';
 import { Proyecto } from '@modules/proyectos/models';
+import { ProyectosService } from '@modules/proyectos/services/proyectos.service';
 
 @Component({
     selector: 'sb-add-proyecto',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './add-proyecto.component.html',
     styleUrls: ['add-proyecto.component.scss'],
 })
@@ -17,10 +19,15 @@ export class AddProyectoComponent implements OnInit {
     listMaterial: string[] = ['Cartoncillo', 'Cartón Ondulado', 'Metal', 'Film plástico'];
     listArchivo: string[] = ['Master', 'Pre-artwork', 'Artwork'];
     private file: File | null = null;
+    isAdmin: boolean | undefined;
+    clientes: Array<User> | undefined;
+
     constructor(
         private fb: FormBuilder,
         private projectsService: ProyectosService,
-        private router: Router
+        private router: Router,
+        private as: AuthService,
+        private cs: ClientesService
     ) {
         this.registerProjectForm = this.fb.group({
             nombre: ['', Validators.required],
@@ -30,11 +37,19 @@ export class AddProyectoComponent implements OnInit {
             impresor: [''],
             tipoArchivo: [''],
             archivo: [''],
+            cliente: [''],
+            contacto: [''],
         });
     }
 
     onSubmit() {
         if (this.registerProjectForm.valid) {
+            let clienteId = '';
+            if (this.isAdmin) {
+                clienteId = this.registerProjectForm.value.cliente;
+            } else {
+                clienteId = this.as.getUser()._id;
+            }
             const project: Proyecto = {
                 id: '',
                 nombre: this.registerProjectForm.value.nombre,
@@ -44,11 +59,11 @@ export class AddProyectoComponent implements OnInit {
                 impresor: this.registerProjectForm.value.impresor,
                 tipoArchivo: this.registerProjectForm.value.tipoArchivo,
                 preview: '',
-                cliente: 'set client',
+                cliente: clienteId,
                 artwork: '',
                 fecha: String(Date()),
                 informe: '',
-                contacto: '',
+                contacto: this.registerProjectForm.value.contacto,
                 estado: '0',
             };
 
@@ -81,5 +96,13 @@ export class AddProyectoComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.as.getUser().admin) {
+            this.cs.getClientes().subscribe(res => {
+                this.clientes = res;
+                this.isAdmin = true;
+                console.log(res);
+            });
+        }
     }
+
 }

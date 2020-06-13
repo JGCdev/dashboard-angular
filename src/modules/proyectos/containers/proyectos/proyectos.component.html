@@ -18,7 +18,7 @@
                 <!-- Progress Column -->
                 <ng-container matColumnDef="preview">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Preview </th>
-                    <td mat-cell *matCellDef="let row"> <img class="preview-image" src="{{row.preview}}"> </td>
+                    <td mat-cell *matCellDef="let row"> <img class="preview-image" src="{{row.preview.length > 0 ? row.preview : placeholder}}"> </td>
                 </ng-container>
 
                 <!-- Progress Column -->
@@ -36,7 +36,7 @@
                 <!-- Name Column -->
                 <ng-container matColumnDef="archivos">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Archivos </th>
-                    <td mat-cell *matCellDef="let row"> <a routerLink="/proyectos/archivos/{{row.id}}" routerLinkActive="router-link-active" >check</a> </td>
+                    <td mat-cell *matCellDef="let row"> <button class="btn btn-primary" (click)="openDetails(row)">check</button> </td>
                 </ng-container>
                             
                 <!-- Progress Column -->

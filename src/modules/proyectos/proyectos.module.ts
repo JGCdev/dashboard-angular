@@ -16,6 +16,7 @@ import * as proyectosContainers from './containers';
 
 import { AuthGuard } from '@modules/auth/guards';
 import { MaterialModule } from '@app/material/material.module';
+import { ClientesService } from '@modules/clientes/services';
 
 @NgModule({
     imports: [
@@ -27,7 +28,7 @@ import { MaterialModule } from '@app/material/material.module';
         NavigationModule,
         MaterialModule,
     ],
-    providers: [...proyectosServices.services, AuthGuard],
+    providers: [...proyectosServices.services, AuthGuard, ClientesService],
     declarations: [...proyectosContainers.containers],
     exports: [...proyectosContainers.containers],
 })

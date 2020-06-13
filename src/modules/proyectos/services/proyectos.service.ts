@@ -9,6 +9,7 @@ import { Proyecto } from '../models';
 @Injectable()
 export class ProyectosService {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
+    proyectoSelected: Proyecto | undefined;
 
     constructor(private http: HttpClient, public router: Router) {}
 
