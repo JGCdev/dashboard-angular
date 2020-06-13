@@ -45,6 +45,24 @@ export const ROUTES: Routes = [
             ],
         } as SBRouteData,
     },
+    {
+        path: 'archivos/:id',
+        canActivate: [AuthGuard],
+        component: proyectosContainers.ArchivosComponent,
+        data: {
+            title: 'Archivos - Grey Levels',
+            breadcrumbs: [
+                {
+                    text: 'Proyectos',
+                    link: '/proyectos',
+                },
+                {
+                    text: 'Archivos',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+    },
 ];
 
 @NgModule({
