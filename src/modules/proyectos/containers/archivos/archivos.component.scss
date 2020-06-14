@@ -19,3 +19,32 @@ td, th {
     padding-right:30px!important;
 }
 
+.loader{
+    position: absolute;
+    top: -55px;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    right: 0;
+    left: 0;
+    .loader-container{
+        justify-content: center;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        height: 100vh;
+        .box-loader{
+            background-color: #f7f7f7;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 50px;
+            h4{
+                margin-bottom:30px;
+            }
+        }
+    }
+}

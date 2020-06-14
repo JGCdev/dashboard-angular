@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [],
@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatSlideToggleModule,
         MatDialogModule,
         MatSelectModule,
+        MatProgressSpinnerModule,
     ],
     exports: [
         MatTableModule,
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatSlideToggleModule,
         MatDialogModule,
         MatSelectModule,
+        MatProgressSpinnerModule,
     ],
 })
 export class MaterialModule {}

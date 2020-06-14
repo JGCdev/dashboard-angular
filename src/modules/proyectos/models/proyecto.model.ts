@@ -1,7 +1,7 @@
 import { Archivo } from './archivo.model';
 
 export interface Proyecto {
-    id: string;
+    _id: string;
     nombre: string;
     preview: string;
     nombreDis: string;

@@ -28,11 +28,24 @@ export class ProyectosService {
         return this.http.delete(api);
     }
 
+    deleteFile(data: any) {
+        const api = `${environment.apiEndPoint}/projects/file/delete`;
+        return this.http.post(api, data);
+    }
+
     registro(project: Proyecto, archivo: any): Observable<any> {
         const formData = new FormData();
         formData.append('file', archivo);
         formData.append('datos', JSON.stringify(project));
         const api = `${environment.apiEndPoint}/projects`;
+        return this.http.post(api, formData);
+    }
+
+    subirArchivo(project: Proyecto, archivo: any): Observable<any> {
+        const formData = new FormData();
+        formData.append('file', archivo);
+        formData.append('datos', JSON.stringify(project));
+        const api = `${environment.apiEndPoint}/projects/file`;
         return this.http.post(api, formData);
     }
 

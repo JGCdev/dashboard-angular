@@ -49,7 +49,7 @@ export class AddProyectoComponent implements OnInit {
                 this.registerProjectForm.value.cliente.id = this.as.getUser()._id;
             }
             const project: Proyecto = {
-                id: '',
+                _id: '',
                 nombre: this.registerProjectForm.value.nombre,
                 nombreDis: this.registerProjectForm.value.nombreDis,
                 packaging: this.registerProjectForm.value.packaging,
@@ -87,11 +87,7 @@ export class AddProyectoComponent implements OnInit {
 
     onFileChange(event: any) {
         if (event.target.files.length > 0) {
-            console.log(event.target.files[0]);
             this.file = event.target.files[0];
-            this.registerProjectForm.patchValue({
-                arcivo: this.file,
-            });
         }
     }
 
