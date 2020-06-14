@@ -51,6 +51,21 @@
                         <input type="file" formControlName="archivo" (change)="onFileChange($event)">
                      </div>
                   </div>
+                  <div class="col-md-6">
+                     <div class="form-group"><label class="small mb-1" for="inputContacto">Contacto</label><input class="form-control py-4" id="inputContacto" type="text" placeholder="Nombre contacto" formControlName="contacto" /></div>
+                  </div>
+               </div>
+
+               <div class="form-row">
+                  <div class="col-md-6" *ngIf="isAdmin">
+                     <div class="form-group"><label class="small mb-1" for="inputCliente">Cliente *</label>
+                        <select class="custom-select" formControlName="cliente">
+                           <option disabled value="null">Selecciona un cliente</option>
+                           <option *ngFor="let cliente of clientes" [ngValue]="cliente">{{cliente.nombre}}</option>
+                        </select>
+                     </div>
+                  </div>
+                 
                </div>
 
 

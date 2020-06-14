@@ -3,89 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from '@modules/proyectos/models';
-
-const users: Proyecto[] = [
-    {
-        id: '12sdsd',
-        preview: './assets/img/danone-preview.png',
-        nombre: 'Proyecto SOL',
-        fecha: '23/06/220',
-        informe: 'sdfsd@dsd.com',
-        cliente: 'Gallina Blanca',
-        artwork: 'C/ Eduardo Dato',
-        contacto: 'María',
-        estado: '0',
-        nombreDis: '',
-        packaging: '',
-        material: '',
-        impresor: '',
-        tipoArchivo: '',
-    },
-    {
-        id: 'sds6d',
-        preview: './assets/img/thumb_placeholder.jpg',
-        nombre: 'Proyecto LUNA',
-        fecha: '23/01/2020',
-        informe: 'sdfsd@dsd.com',
-        cliente: 'Findus',
-        artwork: 'C/ Eduardo Dato',
-        contacto: 'Pedro',
-        estado: '1',
-        nombreDis: '',
-        packaging: '',
-        material: '',
-        impresor: '',
-        tipoArchivo: '',
-    },
-    {
-        id: 's234dsd',
-        preview: './assets/img/thumb_placeholder.jpg',
-        nombre: 'Proyecto JUPITER',
-        fecha: '14/06/2019',
-        informe: 'sdfsd@dsd.com',
-        cliente: 'Danone',
-        artwork: 'C/ Eduardo Dato',
-        contacto: 'Susana',
-        estado: '2',
-        nombreDis: '',
-        packaging: '',
-        material: '',
-        impresor: '',
-        tipoArchivo: '',
-    },
-    {
-        id: 'sds345d',
-        preview: './assets/img/yatekomo.jpg',
-        nombre: 'Proyecto SATURNO',
-        fecha: '23/12/2019',
-        informe: 'sdfsd@dsd.com',
-        cliente: 'Telepizza',
-        artwork: 'C/ Eduardo Dato',
-        contacto: 'Alberto',
-        estado: '0',
-        nombreDis: '',
-        packaging: '',
-        material: '',
-        impresor: '',
-        tipoArchivo: '',
-    },
-    {
-        id: 'sds345d',
-        preview: './assets/img/thumb_placeholder.jpg',
-        nombre: 'Proyecto URANO',
-        fecha: '01/05/2020',
-        informe: 'sdfsd@dsd.com',
-        cliente: 'Gallo',
-        artwork: 'C/ Eduardo Dato',
-        contacto: 'Marcos',
-        estado: '3',
-        nombreDis: '',
-        packaging: '',
-        material: '',
-        impresor: '',
-        tipoArchivo: '',
-    },
-];
+import { ProyectosService } from '@modules/proyectos/services';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmationComponent } from '@common/components';
 
 @Component({
     selector: 'sb-proyectos',
@@ -94,9 +15,10 @@ const users: Proyecto[] = [
     styleUrls: ['proyectos.component.scss'],
 })
 export class ProyectosComponent implements OnInit {
+    placeholder = './assets/img/thumb_placeholder.jpg';
     fases = [
         {
-            text: 'Terminado',
+            text: 'Esperando validación',
             style: 'fase-s comp-s',
         },
         {
@@ -118,10 +40,11 @@ export class ProyectosComponent implements OnInit {
         'fecha',
         'archivos',
         'informe',
-        'cliente',
+        'clienteNombre',
         'artwork',
         'contacto',
         'estado',
+        'actions',
     ];
     dataSource: MatTableDataSource<Proyecto>;
 
@@ -130,15 +53,25 @@ export class ProyectosComponent implements OnInit {
     @ViewChild(MatSort, { static: true })
     sort!: MatSort;
 
-    constructor() {
+    proyectos: Array<Proyecto> | undefined;
+
+    constructor(private ps: ProyectosService, private router: Router, public dialog: MatDialog) {
         // Create 100 users
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(users);
+        this.dataSource = new MatTableDataSource();
     }
 
     ngOnInit() {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.getProyectos();
+    }
+
+    getProyectos() {
+        this.ps.getProyectos().subscribe(res => {
+            console.log(res);
+            this.dataSource.data = res;
+        });
     }
 
     applyFilter(event: Event) {
@@ -148,5 +81,31 @@ export class ProyectosComponent implements OnInit {
         if (this.dataSource.paginator) {
             this.dataSource.paginator.firstPage();
         }
+    }
+
+    openDetails(proyecto: any) {
+        this.ps.proyectoSelected = proyecto;
+        this.router.navigate(['proyectos/archivos/']);
+    }
+
+    delete(id: string) {
+        const dialogRef = this.dialog.open(DialogConfirmationComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.ps.deleteProject(id).subscribe(
+                    res => {
+                        console.log('Usuario eliminado', res);
+                        this.getProyectos();
+                    },
+                    err => {
+                        console.log('Error al eliminar usuario', err);
+                    }
+                );
+            }
+        });
+    }
+
+    edit() {
+
     }
 }

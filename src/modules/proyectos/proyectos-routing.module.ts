@@ -46,7 +46,7 @@ export const ROUTES: Routes = [
         } as SBRouteData,
     },
     {
-        path: 'archivos/:id',
+        path: 'archivos',
         canActivate: [AuthGuard],
         component: proyectosContainers.ArchivosComponent,
         data: {

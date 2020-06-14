@@ -1,3 +1,5 @@
+import { Archivo } from './archivo.model';
+
 export interface Proyecto {
     id: string;
     nombre: string;
@@ -9,8 +11,10 @@ export interface Proyecto {
     tipoArchivo: string;
     fecha: string;
     cliente: string;
+    clienteNombre: string;
     artwork: string;
     informe: string;
     contacto: string;
     estado: string;
+    archivos: Array<Archivo>;
 }
