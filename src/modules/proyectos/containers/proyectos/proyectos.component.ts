@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from '@modules/proyectos/models';
 import { ProyectosService } from '@modules/proyectos/services';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmationComponent } from '@common/components';
 
 @Component({
     selector: 'sb-proyectos',
@@ -38,10 +40,11 @@ export class ProyectosComponent implements OnInit {
         'fecha',
         'archivos',
         'informe',
-        'cliente',
+        'clienteNombre',
         'artwork',
         'contacto',
         'estado',
+        'actions',
     ];
     dataSource: MatTableDataSource<Proyecto>;
 
@@ -52,7 +55,7 @@ export class ProyectosComponent implements OnInit {
 
     proyectos: Array<Proyecto> | undefined;
 
-    constructor(private ps: ProyectosService, private router: Router) {
+    constructor(private ps: ProyectosService, private router: Router, public dialog: MatDialog) {
         // Create 100 users
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource();
@@ -61,6 +64,10 @@ export class ProyectosComponent implements OnInit {
     ngOnInit() {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.getProyectos();
+    }
+
+    getProyectos() {
         this.ps.getProyectos().subscribe(res => {
             console.log(res);
             this.dataSource.data = res;
@@ -77,8 +84,28 @@ export class ProyectosComponent implements OnInit {
     }
 
     openDetails(proyecto: any) {
-        console.log(proyecto);
         this.ps.proyectoSelected = proyecto;
-        this.router.navigate(['proyectos/archivos/' + proyecto._id]);
+        this.router.navigate(['proyectos/archivos/']);
+    }
+
+    delete(id: string) {
+        const dialogRef = this.dialog.open(DialogConfirmationComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.ps.deleteProject(id).subscribe(
+                    res => {
+                        console.log('Usuario eliminado', res);
+                        this.getProyectos();
+                    },
+                    err => {
+                        console.log('Error al eliminar usuario', err);
+                    }
+                );
+            }
+        });
+    }
+
+    edit() {
+
     }
 }

@@ -60,8 +60,8 @@
                   <div class="col-md-6" *ngIf="isAdmin">
                      <div class="form-group"><label class="small mb-1" for="inputCliente">Cliente *</label>
                         <select class="custom-select" formControlName="cliente">
-                           <option disabled value="">Selecciona un cliente</option>
-                           <option *ngFor="let cliente of clientes" [value]="cliente._id">{{cliente.nombre}}</option>
+                           <option disabled value="null">Selecciona un cliente</option>
+                           <option *ngFor="let cliente of clientes" [ngValue]="cliente">{{cliente.nombre}}</option>
                         </select>
                      </div>
                   </div>

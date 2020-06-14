@@ -17,6 +17,7 @@ import * as proyectosContainers from './containers';
 import { AuthGuard } from '@modules/auth/guards';
 import { MaterialModule } from '@app/material/material.module';
 import { ClientesService } from '@modules/clientes/services';
+import { DialogConfirmationComponent } from '@common/components';
 
 @NgModule({
     imports: [
@@ -31,5 +32,6 @@ import { ClientesService } from '@modules/clientes/services';
     providers: [...proyectosServices.services, AuthGuard, ClientesService],
     declarations: [...proyectosContainers.containers],
     exports: [...proyectosContainers.containers],
+    entryComponents: [DialogConfirmationComponent],
 })
 export class ProyectosModule {}

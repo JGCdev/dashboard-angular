@@ -9,7 +9,7 @@ import { Proyecto } from '../models';
 @Injectable()
 export class ProyectosService {
     headers = new HttpHeaders().set('Content-Type', 'application/json');
-    proyectoSelected: Proyecto | undefined;
+    proyectoSelected!: Proyecto;
 
     constructor(private http: HttpClient, public router: Router) {}
 
@@ -39,5 +39,12 @@ export class ProyectosService {
     getProject(id: any): Observable<any> {
         const api = `${environment.apiEndPoint}/projects/${id}`;
         return this.http.get(api);
+    }
+
+    download(archivo: string) {
+        const api = `${environment.apiEndPoint}/projects/file/${archivo}`;
+        return this.http.get(api, { responseType: 'blob' });
+
+        //return this.http.get(api);
     }
 }

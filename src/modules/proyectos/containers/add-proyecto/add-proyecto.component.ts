@@ -37,18 +37,16 @@ export class AddProyectoComponent implements OnInit {
             impresor: [''],
             tipoArchivo: [''],
             archivo: [''],
-            cliente: [''],
+            cliente: [null],
             contacto: [''],
         });
     }
 
     onSubmit() {
         if (this.registerProjectForm.valid) {
-            let clienteId = '';
             if (this.isAdmin) {
-                clienteId = this.registerProjectForm.value.cliente;
-            } else {
-                clienteId = this.as.getUser()._id;
+                console.log(this.registerProjectForm.value);
+                this.registerProjectForm.value.cliente.id = this.as.getUser()._id;
             }
             const project: Proyecto = {
                 id: '',
@@ -59,12 +57,14 @@ export class AddProyectoComponent implements OnInit {
                 impresor: this.registerProjectForm.value.impresor,
                 tipoArchivo: this.registerProjectForm.value.tipoArchivo,
                 preview: '',
-                cliente: clienteId,
+                cliente: this.registerProjectForm.value.cliente.id,
+                clienteNombre: this.registerProjectForm.value.cliente.nombre,
                 artwork: '',
                 fecha: String(Date()),
                 informe: '',
                 contacto: this.registerProjectForm.value.contacto,
                 estado: '0',
+                archivos: [],
             };
 
             console.log('Form válido, Proyecto: ', project);
